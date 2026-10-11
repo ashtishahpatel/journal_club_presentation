@@ -16,9 +16,17 @@ Template being filled in: `~/.claude/skills/journal_club_presentation/reference/
 Follow the template order and these rules:
 
 **Style**
-- **Bullets only.** No full paragraphs. Fragments are fine. **Bold** the number or phrase the presenter will say out loud.
-- Short: one line per bullet when possible, rarely more than two. Use sub-bullets (`{"text": ..., "sub": [...]}`) to break up anything longer.
-- Spell out an abbreviation only if a urology audience wouldn't know it.
+- **Bullets only.** No full paragraphs. **Bold** the number or phrase the presenter will say out loud.
+- **Clarity beats brevity.** Each bullet must make sense on its own to a listener who hasn't read the paper. Plain words are fine. Keep bullets to 1-2 lines and split longer ideas into sub-bullets (`{"text": ..., "sub": [...]}`).
+  - Bad: `Late drop after 48 mo, but only 11 → 6 patients at risk, so the CI is very wide`
+  - Good: `After 4 years the curve drops again, but only 11 patients were still being followed (6 at ~4.5 yrs), so one recurrence moves the curve a lot. Don't over-read the tail`
+- No cryptic shorthand: no arrows between bare numbers, no undefined abbreviations, no telegraphic fragments that need the paper to decode. If the reason behind a number matters, say it.
+- When two similar terms mean different things in the paper (e.g., **recurrence vs progression**, during vs after treatment, all patients vs responders), state the difference explicitly.
+
+**Don't parrot the authors: check their claims against their own data**
+- Before repeating any summary claim from the abstract or discussion (e.g., "no progression during treatment", "well tolerated", "durable"), check it against the tables and figures.
+- If a claim is technically true but misleading (e.g., "no progression *during* treatment" when patients came off treatment as soon as they recurred, so any later progression didn't count), don't present it bare. Add the context in Results, and consider it as a "Not discussed in the paper" limitation.
+- The conclusion callout must not overstate the results. Include the important negatives (recurrences, progressions, deaths), not just the headline numbers.
 - Put a time budget on the top-level sections (`"time"` field). Default: Background ~1 min, Methods ~2.5 min, Results ~5 min, Limitations + final comments ~1.5 min.
 
 **Sections**
@@ -79,7 +87,10 @@ All coordinates are **fractions of the full page** (0-1, origin top-left).
 python3 ~/.claude/skills/journal_club_presentation/scripts/build_docx.py <workdir>/outline.json
 ```
 
-Then re-read your JSON against the paper one last time: every number, every patient ID, every "x of y". Fix and rebuild if anything is off.
+Then do one last review pass against the paper, and fix and rebuild if anything is off:
+- **Accuracy:** check every number, patient ID, and "x of y" against the paper.
+- **Clarity:** read each bullet as if hearing it cold, without the paper. If one needs the paper to make sense, rewrite it.
+- **Claims:** for each summary statement, ask whether the figures support it fully or only on a technicality.
 
 ## Step 5: Return (keep it brief)
 
