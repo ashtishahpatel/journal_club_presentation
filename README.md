@@ -15,7 +15,7 @@ Claude starts one agent per paper in parallel. Each outline is saved next to its
 ## Install on a new machine
 
 ```bash
-git clone <this repo> ~/.claude/skills/journal_club_presentation
+git clone https://github.com/ashtishahpatel/journal_club_presentation ~/.claude/skills/journal_club_presentation
 brew install poppler
 pip3 install python-docx pillow
 ```
